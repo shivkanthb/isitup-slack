@@ -27,7 +27,37 @@ app.post('/isup', function(req,res){
 var command = req.body.command;
 var token = req.body.token;
 var text = req.body.text;
-res.send("PODS");
+
+
+if(token != 'FrJMYMpw5AjUU5xHefW5g1Fa')
+res.send('The token for the slash command doesn\'t match. Check your script.');
+else
+{
+
+	var headers = { 
+    'User-Agent': 'Isitup-Slack/1.0 (https://github.com/shivkanthb/isitup-slack; shivkanthb@gmail.com)'
+		};
+
+	var url_to_check = 'http://isitup.org/'+text+'.json';
+
+	request.get({url:url_to_check, headers: headers}, function(err,response,body){
+
+		var body = JSON.parse(body);
+
+		if(body.status_code == 1)
+		{
+			var reply = "Yay. *<http://"+text+"|"+text+">* is up :thumbsup:";
+			res.send(reply);
+		}
+		else
+		{
+			
+		}
+		//console.log(body.response_code);
+	});
+	
+}
+//res.send("PODS");
 //res.status(200).json({text:"YO "+command+" "+text});
 });
 
