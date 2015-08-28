@@ -49,9 +49,19 @@ else
 			var reply = "Yay. *<http://"+text+"|"+text+">* is up :thumbsup:";
 			res.send(reply);
 		}
+		else if(body.status_code == 2)
+		{
+			var reply =  "I am sorry to report that *<"+text+">* is *down*! :disappointed:";
+			res.send(reply);
+		}
+		else if(body.status_code == 3)
+		{
+			var reply =  "*"+text+"* does not appear to be a valid domain. Please enter both the domain name AND the suffix (example: *amazon.com* or *whitehouse.gov*). :interrobang:";
+			res.send(reply);
+		}
 		else
 		{
-			
+			res.send("Something went wrong. Try after sometime.");
 		}
 		//console.log(body.response_code);
 	});
