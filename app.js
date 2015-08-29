@@ -8,19 +8,13 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get('/', function(req,res){
 
-	var headers = { 
-    'User-Agent': 'IsitupForSlack/1.0 (https://github.com/mccreath/istiupforslack; mccreath@gmail.com)'
-};
-	request.get({url:"http://isitup.org/duckduckgo.com.json", headers: headers},function(err,response,body){
-
-		//console.log(response);
-		//console.log('SAPPI');
-		var body = JSON.parse(body);
-		console.log(body.response_code);
-	});
-
+	res.json({msg:"hello"});
 });
 
+//example
+// request.get({url:"http://isitup.org/duckduckgo.com.json", headers: headers},function(err,response,body){
+// something happens here
+// }
 
 app.post('/isup', function(req,res){
 
